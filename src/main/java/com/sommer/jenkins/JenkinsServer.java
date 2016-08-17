@@ -353,8 +353,7 @@ public class JenkinsServer {
 	/**
 	 * Delete Jenkins job permanently.
 	 * 
-	 * @param name:
-	 *            Name of Jenkins job
+	 * @param name:	Name of Jenkins job
 	 * @return
 	 */
 	public String deleteJob(String name) {
@@ -362,6 +361,26 @@ public class JenkinsServer {
 		Map<String, String> map = getJobFolder(name);
 		try {
 			res = jenkinsPost(buildUrl(RequestFormat.DELETE_JOB, map.get("folderUrl"), map.get("shortName")));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (JenkinsException e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+	/**
+	 * ConsoleOutput for certain build
+	 * @param name:	Name of Jenkins job
+	 * @param num:	Build number
+	 * @return console output
+	 */
+	public String consoleOutput(String name,int num) {
+		String res = "";
+		Map<String, String> map = getJobFolder(name);
+		try {
+			res = jenkinsOpen(buildUrl(RequestFormat.BUILD_CONSOLE_OUTPUT, map.get("folderUrl"), map.get("shortName"), num));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

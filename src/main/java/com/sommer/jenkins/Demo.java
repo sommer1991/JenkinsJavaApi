@@ -10,9 +10,10 @@ public class Demo {
 //		String res = server.renameJob("mavenproject", "mavenproject1");
 //		Boolean b = server.jobExits("mavenproject1");
 //		String res = server.disableJob("mavenproject");
-		
-		String configXML = Common.readConfigFile("config/config_xml");
-		server.createJob("new817", configXML);
+		String res = server.consoleOutput("mavenproject", 48);
+		System.out.println(res);
+//		String configXML = Common.readConfigFile("config/config_xml");
+//		server.createJob("new817", configXML);
 		
 //		String configXML = server.getJobConf("mavenproject");
 //		ConfigEntity configEntity = new ConfigEntity();
